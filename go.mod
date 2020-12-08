@@ -1,4 +1,4 @@
-module larry
+module github.com/ynbella/larry
 
 go 1.15
 
