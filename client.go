@@ -2,13 +2,14 @@ package larry
 
 import (
 	"encoding/json"
-	"github.com/bxcodec/httpcache"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/clientcredentials"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/bxcodec/httpcache"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/clientcredentials"
 )
 
 type Client struct {
@@ -46,7 +47,7 @@ func WithCache() ClientOption {
 }
 
 func (c *Client) MakeRequest(req *Request, v interface{}) error {
-	resp, err := c.HttpClient.Get(req.Path)
+	resp, err := c.HttpClient.Get(req.RawPath)
 	if err != nil {
 		return err
 	}
