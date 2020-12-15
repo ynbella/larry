@@ -2,9 +2,11 @@ package larry
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/bxcodec/httpcache"
@@ -47,7 +49,11 @@ func WithCache() ClientOption {
 }
 
 func (c *Client) MakeRequest(req *Request, v interface{}) error {
-	resp, err := c.HttpClient.Get(req.RawPath)
+	path := url.URL(*req)
+	fmt.Println(path)
+	fmt.Println(path.String())
+
+	resp, err := c.HttpClient.Get(path.String())
 	if err != nil {
 		return err
 	}
