@@ -12,7 +12,7 @@ type RequestOption func(*Request)
 
 func WithQueryParams(key string, values ...string) RequestOption {
 	return func(req *Request) {
-		params := new(url.Values)
+		params := url.Values{}
 		for _, value := range values {
 			params.Add(key, value)
 		}
